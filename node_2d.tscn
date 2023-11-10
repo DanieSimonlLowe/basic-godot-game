@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3w58ogv6wd11"]
+
+[ext_resource type="Shader" path="res://base/base.gdshader" id="1_fupm6"]
+[ext_resource type="Texture2D" uid="uid://dkjusjky2b8pq" path="res://base/base.png" id="2_fjgch"]
+[ext_resource type="Script" path="res://base/base.gd" id="3_f8up2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ltbgi"]
+shader = ExtResource("1_fupm6")
+shader_parameter/wall = null
+shader_parameter/oil = null
+shader_parameter/goop = null
+shader_parameter/fire = null
+shader_parameter/black = null
+shader_parameter/viewPos = null
+shader_parameter/viewSize = null
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Base" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ltbgi")
+position = Vector2(569, 320.5)
+scale = Vector2(1178, 691)
+texture = ExtResource("2_fjgch")
+script = ExtResource("3_f8up2")
