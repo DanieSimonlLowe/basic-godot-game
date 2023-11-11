@@ -1,11 +1,6 @@
 extends Node
 
 var mat;
-var wall;
-var oil;
-var goop;
-var fire;
-var black;
 var viewPos;
 var viewSize;
 
@@ -13,34 +8,12 @@ var viewSize;
 func _ready():
 	viewPos = Vector2(0.2,0.2);
 	viewSize = Vector2(0.6,0.4);
-	wall = []
-	oil = []
-	fire = []
-	black = []
-	goop = []
-	for i in range(2500):
-		if i % 30 == 0:
-			wall.append(100.0)
-		else:
-			wall.append(0.0)
-		if i % 2 == 0:
-			oil.append(0.0)
-		else:
-			oil.append(0.0)
-		if i % 27 < 6:
-			fire.append(7.51)
-		else:
-			fire.append(0.0)
-		if i % 7 == 0:
-			black.append(0.0)
-		else:
-			black.append(0.0)
-		if i % 13 == 0:
-			goop.append(0.0)
-		else:
-			goop.append(0.0)
+	#viewPos = Vector2(0.0,0.0);
+	#viewSize = Vector2(1.0,1.0);
 	
 	mat = $".".get_material();
+	#mat.set_shader_parameter("wallOilGoopFire", Image.new().load("res://test.png"));
+	#mat.set_shader_parameter("toxicIce", Image.new().load("res://test.png"));
 	
 
 func update_screen():
@@ -58,23 +31,16 @@ func update_screen():
 	mat.set_shader_parameter("viewSize",viewSize)
 
 
-
-func run_compute_shader():
-	mat.set_shader_parameter("wall",wall)
-	mat.set_shader_parameter("oil",oil)
-	mat.set_shader_parameter("goop",goop)
-	mat.set_shader_parameter("fire",fire)
-	mat.set_shader_parameter("black",black)
-
-
 var time_since_last = 1.0
+var total_time = 0.0;
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	total_time += delta;
 	time_since_last += delta
 	if time_since_last > 0.05:
-		run_compute_shader()
 		time_since_last = 0
 	
+	mat.set_shader_parameter("time",total_time)
 	update_screen()
 	
 	
