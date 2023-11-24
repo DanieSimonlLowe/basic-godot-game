@@ -6,10 +6,8 @@ var viewSize;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	viewPos = Vector2(0.2,0.2);
-	viewSize = Vector2(0.6,0.4);
-	#viewPos = Vector2(0.0,0.0);
-	#viewSize = Vector2(1.0,1.0);
+	viewPos = Vector2(0.0,0.0);
+	viewSize = Vector2(1.0,1.0);
 	
 	mat = $".".get_material();
 	#mat.set_shader_parameter("wallOilGoopFire", Image.new().load("res://test.png"));

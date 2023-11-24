@@ -38,7 +38,7 @@ void fragment() {
 			float goop = wallOilGoopFireVal.z;
 			vec3 baseColor;
 			
-			vec4 noiseValue = texture(noise,view);
+			vec4 noiseValue = texture(noise,view * 2.0);
 			
 			float rBase = (ice + oil + goop) * noiseValue.x;
 			if (rBase < ice) {
@@ -53,7 +53,7 @@ void fragment() {
 
 			float fire = wallOilGoopFireVal.w;
 			float toxic = toxicIceVal.x;
-			float rGas = noiseValue.y + time * 0.5;
+			float rGas = noiseValue.y + time * 0.15;
 			rGas = (toxic + fire + 0.5) * (rGas - floor(rGas));
 			
 			if (rGas < toxic) {
